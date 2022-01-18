@@ -8,7 +8,7 @@ export interface LookupResult {
 export async function lookup(dnsServer: string, hostname: string): Promise<LookupResult> {
   console.log('lookup', dnsServer, hostname);
   const resolver = new dns.promises.Resolver();
-  // resolver.setServers([dnsServer]);
+  resolver.setServers([dnsServer]);
   const hostnames = await resolver.resolve(hostname);
   console.log('lookup hostnames', hostnames);
   const mx = await resolver.resolveMx(hostname);
