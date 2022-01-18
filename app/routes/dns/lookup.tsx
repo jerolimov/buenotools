@@ -1,4 +1,4 @@
-import { LoaderFunction, useLoaderData, ErrorBoundaryComponent } from "remix";
+import { LoaderFunction, useLoaderData, ErrorBoundaryComponent, Link } from "remix";
 import { LookupResult, lookup } from "./utils.server";
 
 interface LoaderData {
@@ -9,7 +9,7 @@ interface LoaderData {
 
 export const loader: LoaderFunction = async ({ request }): Promise<LoaderData> => {
   const url = new URL(request.url);
-  const dnsServer = url.searchParams.get("dnsServer") as string || '4.4.4.4';
+  const dnsServer = url.searchParams.get("dnsServer") as string || '8.8.8.8';
   const hostname = url.searchParams.get("hostname") as string || '';
   const lookupResult = hostname ? (await lookup(dnsServer, hostname)) : undefined;
   return { dnsServer, hostname, lookupResult };
@@ -20,7 +20,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
     <div className="bg-gray-100 min-h-screen py-8">
       <div className="max-w-md mx-auto">
         <div className="bg-white shadow-xl rounded-lg p-8">
-          <h1 className="text-center text-3xl font-bold text-gray-600 pb-4">DNS lookup</h1>
+          <h1 className="text-center text-3xl font-bold text-gray-600 pb-4">
+            <Link to=".">
+              DNS lookup
+            </Link>
+          </h1>
           {children}
         </div>
       </div>
