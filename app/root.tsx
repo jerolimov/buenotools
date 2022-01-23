@@ -9,6 +9,7 @@ import {
   ScrollRestoration,
   useCatch
 } from "remix";
+import Header from "./components/header";
 import styles from "./tailwind.css";
 
 export const meta: MetaFunction = () => {
@@ -29,6 +30,7 @@ export default function App() {
         <Links />
       </head>
       <body>
+        <Header />
         <Outlet />
         <ScrollRestoration />
         <Scripts />
@@ -49,6 +51,7 @@ export function CatchBoundary() {
         <Links />
       </head>
       <body>
+        <Header />
         <div className="bg-white min-h-full px-4 py-16 sm:px-6 sm:py-24 md:grid md:place-items-center lg:px-8">
           <div className="max-w-max mx-auto">
             <main className="sm:flex">
