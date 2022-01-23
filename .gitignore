@@ -4,3 +4,12 @@
 /build
 /public/build
 /node_modules
+
+# Netlify
+/.netlify
+/netlify/functions/server/build
+
+# Vercel
+/.vercel
+/.output
+/api/_build
